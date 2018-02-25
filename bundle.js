@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(4);
+var content = __webpack_require__(5);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -82,7 +82,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(9)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -118,23 +118,26 @@ if(false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return instructions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Dir; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EAST_BORDER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return NORTH_BORDER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return SOUTH_BORDER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return WEST_BORDER; });
-// instruction sequence
-const instructions = ["PLACE 5,8,NORTH", "MOVE", "LEFT", "PLACE 3,6,NORTH", "MOVE", "LEFT", "MOVE", "MOVE", "RIGHT", "PLACE 5,4,NORTH", "MOVE", "MOVE", "LEFT", "MOVE", "MOVE", "RIGHT", "MOVE", "LEFT", "MOVE", "REPORT"];
+/* unused harmony export instructions */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Dir; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return EAST_BORDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return NORTH_BORDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return SOUTH_BORDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return WEST_BORDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return pattern; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ANGLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return INSTRUCTIONS; });
 //Dir: direction
 const Dir = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
+const INSTRUCTIONS = ['LEFT', 'RIGHT', 'MOVE', 'REPORT'];
+const ANGLE = { 'NORTH': 0, 'EAST': -90, 'SOUTH': 180, 'WEST': 90 };
 //X direction
 const EAST_BORDER = 6;
 const WEST_BORDER = 2;
 //Y direction
 const NORTH_BORDER = 2;
 const SOUTH_BORDER = 6;
-
+const pattern = /^PLACE\s{1}\d,\d,(NORTH)|(EAST)|(WEST)|(SOUTH)$/;
 
 
 /***/ }),
@@ -144,8 +147,12 @@ const SOUTH_BORDER = 6;
 "use strict";
 /* unused harmony export busArea */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return output; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return testOptions; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_buspark_css__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_buspark_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_buspark_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__instructions_json__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__instructions_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__instructions_json__);
+
 
 // construct bus area including valid park area and invalid park area
 var busArea = document.querySelector('.frame');
@@ -175,19 +182,38 @@ var car = document.createElement('div');
 car.className = 'car';
 busArea.appendChild(car);
 
+var testOptions = document.createElement('select');
+testOptions.className = 'testSelect';
+var optionsKeys = Object.keys(__WEBPACK_IMPORTED_MODULE_1__instructions_json___default.a);
+var optList = optionsKeys.map(function (op) {
+    return `<option value=${op}>TEST${op}</option>`;
+});
+optList.unshift(`<option value=${optionsKeys[0]}>Select Test</option>`);
+testOptions.innerHTML = optList;
+document.getElementById('test').appendChild(testOptions);
+
 
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = {"1":"PLACE 0,0,NORTH;MOVE;MOVE;MOVE;MOVE;MOVE;RIGHT;MOVE;RIGHT;MOVE;MOVE;MOVE;MOVE;MOVE;LEFT;MOVE;LEFT;MOVE;MOVE;MOVE;MOVE;MOVE;RIGHT;MOVE;RIGHT;MOVE;MOVE;MOVE;MOVE;MOVE;LEFT;MOVE;LEFT;MOVE;MOVE;MOVE;MOVE;MOVE;REPORT","2":"PLACE 0,0,NORTH;MOVE;MOVE;MOVE;MOVE;RIGHT;MOVE;MOVE;MOVE;MOVE;RIGHT;MOVE;MOVE;MOVE;MOVE;RIGHT;MOVE;MOVE;MOVE;MOVE;RIGHT;REPORT","3":"PLACE 0,0,NORTH;MOVE;LEFT;PLACE 3,3,NORTH;PLACE 1,4,SOUTH;MOVE;LEFT;MOVE;MOVE;RIGHT;PLACE 5,4,NORTH;MOVE;MOVE;LEFT;MOVE;MOVE;RIGHT;MOVE;LEFT;MOVE;REPORT","4":"test;north;5;place 1,3,east;PLACE 4,4,WEST;LEFT;Hi;MOVE;LEFT;MOVE;move;REPORT","5":"MOVE;NORTH;PLACE,2,3,EAST;PLACE 4,4,WEST;MOVE;LEFT;MOVE;move;REPORT","6":"PLACE 0,0,NORTH;MOVE;MOVE;MOVE;MOVE;RIGHT;MOVE;RIGHT;MOVE;MOVE;MOVE;MOVE;LEFT;MOVE;LEFT;MOVE;MOVE;MOVE;MOVE;RIGHT;MOVE;RIGHT;MOVE;MOVE;MOVE;MOVE;LEFT;MOVE;LEFT;MOVE;MOVE;MOVE;MOVE;REPORT"}
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_buspark_css__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_buspark_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_buspark_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__car_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__car_js__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__const_js__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__instructions_json__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__instructions_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__instructions_json__);
+
 
 
 
@@ -197,40 +223,50 @@ var car = new __WEBPACK_IMPORTED_MODULE_1__car_js__["a" /* default */]();
 
 var btn = document.getElementById('btnStart');
 btn.addEventListener('click', () => {
+	var testIndex = getTestOption();
 	car.reset();
-	StartPark();
+	var instructions = preFilterInstructions(__WEBPACK_IMPORTED_MODULE_4__instructions_json___default.a[testIndex]);
+	startPark(instructions);
 });
 
-function StartPark() {
+function getTestOption() {
+	var index = __WEBPACK_IMPORTED_MODULE_3__ui_js__["b" /* testOptions */].selectedIndex;
+	return __WEBPACK_IMPORTED_MODULE_3__ui_js__["b" /* testOptions */].options[index].value;
+}
+
+function preFilterInstructions(instructions) {
+	return instructions.split(";");
+}
+
+function startPark(instructions) {
 	// use regex to find the first valid PLACE cmd in cmd sequence
-	var pattern = /^PLACE \d,\d,(NORTH)|(EAST)|(WEST)|(SOUTH)$/;
-	while (!pattern.test(__WEBPACK_IMPORTED_MODULE_2__const_js__["f" /* instructions */][0])) {
+	while (!__WEBPACK_IMPORTED_MODULE_2__const_js__["h" /* pattern */].test(instructions[0])) {
 		// take instructions as queue and always remove the first element if it's not right one'
-		__WEBPACK_IMPORTED_MODULE_2__const_js__["f" /* instructions */].shift();
+		instructions.shift();
 	}
 	//execute the valid instructions sequence
-	__WEBPACK_IMPORTED_MODULE_2__const_js__["f" /* instructions */].map(function (instruction, index) {
+	instructions.map(function (instruction, index) {
 		setTimeout(car.instruction, (index + 1) * 1000, instruction);
 	});
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(5);
-exports = module.exports = __webpack_require__(6)(false);
+var escape = __webpack_require__(6);
+exports = module.exports = __webpack_require__(7)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".frame{\r\n\tposition: absolute;\r\n\ttop:100px;\r\n\tleft:500px;\r\n\tbackground-color: transparent;\r\n\tborder: double;\r\n\twidth:425px;\r\n\theight:550px;\r\n}\r\n.output{\r\n\tposition: absolute;\r\n\ttop:420px;\r\n\twidth:420px;\r\n\theight:125px;\r\n\tborder:solid;\r\n\tindex:999;\r\n}\r\n#btnStart{\r\n\tposition:absolute;\r\n\ttop:200px;\r\n\tleft:1000px;\r\n}\r\n.noParkArea{\r\n\tposition:absolute;\r\n\twidth:42px;\r\n\theight:42px;\r\n\tbackground-color:lightgrey;\r\n\tborder:1px dashed;\r\n\ttop:100px;\r\n\tleft:500px;\r\n}\r\n.parkArea{\r\n\tposition:absolute;\r\n\twidth:42px;\r\n\theight:42px;\r\n\tbackground-color:burlywood;\r\n\tborder:1px dashed;\r\n\ttop:100px;\r\n\tleft:500px;\r\n}\r\n.car{\r\n\tbackground: url(" + escape(__webpack_require__(7)) + ") no-repeat center;\r\n\theight:38px;\r\n\twidth:38px;\r\n\tmargin:1px 1px 1px 1px;\r\n\tbackground-color: transparent;\r\n\tposition:absolute;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, ".frame{\r\n\tposition: absolute;\r\n\ttop:100px;\r\n\tleft:500px;\r\n\tbackground-color: transparent;\r\n\tborder: double;\r\n\twidth:421px;\r\n\theight:550px;\r\n}\r\n.output{\r\n\tposition: absolute;\r\n\ttop:420px;\r\n\twidth:416px;\r\n\theight:125px;\r\n\tborder:solid;\r\n\tindex:999;\r\n}\r\n#btnStart{\r\n\tposition:absolute;\r\n\ttop:200px;\r\n\tleft:1000px;\r\n\twidth:100px;\r\n\theight:30px;\r\n}\r\n.noParkArea{\r\n\tposition:absolute;\r\n\twidth:42px;\r\n\theight:42px;\r\n\tbackground-color:lightgrey;\r\n\tborder:1px dashed;\r\n\ttop:100px;\r\n\tleft:500px;\r\n}\r\n.parkArea{\r\n\tposition:absolute;\r\n\twidth:42px;\r\n\theight:42px;\r\n\tbackground-color:burlywood;\r\n\tborder:1px dashed;\r\n\ttop:100px;\r\n\tleft:500px;\r\n}\r\n.car{\r\n\tbackground: url(" + escape(__webpack_require__(8)) + ") no-repeat center;\r\n\theight:38px;\r\n\twidth:38px;\r\n\tmargin:1px 1px 1px 1px;\r\n\tbackground-color: transparent;\r\n\tposition:absolute;\r\n}\r\n.testSelect{\r\n\tposition: absolute;\r\n\ttop: 250px;\r\n\tleft:1000px;\r\n\twidth:100px;\r\n\theight:30px;\r\n}\r\n\r\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = function escape(url) {
@@ -252,7 +288,7 @@ module.exports = function escape(url) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /*
@@ -334,13 +370,13 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/jpeg;base64,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"
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -406,7 +442,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(9);
+var	fixUrls = __webpack_require__(10);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -722,7 +758,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 
@@ -817,7 +853,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -826,97 +862,124 @@ module.exports = function (css) {
 
 
 
-var Car = function () {
-    var X = 0;
-    var Y = 0;
+function Car() {
+    var X = 0,
+        Y = 0;
     var direction = "NORTH";
+    // 
     var cellLength = 42;
+    // for car rotation
     var angle = 0;
+    // to judge if bus is inside carpark
     var insideCarPark = false;
+    var isValidCmd = false;
+
     var car = document.querySelector('.car');
 
     // every time when start button clicked the car will be reseted to original location and status
     this.reset = function () {
-        place(0, 0, "NORTH");
         insideCarPark = false;
+        setCarPosition(0, 0, "NORTH");
         angle = 0;
         car.style.transform = `rotate(${angle}deg)`;
     };
     // accept instruction from control system
     this.instruction = function (cmd) {
         console.log(cmd);
-        var instrs = cmd.replace(" ", ",").split(",");
-        if (instrs.indexOf('PLACE') >= 0) {
-            place(instrs[1], instrs[2], instrs[3]);
-        } else {
-            var fun = insideCarPark ? cmd.toLowerCase() + "()" : "";
-            eval(fun);
-        }
-        showReport(cmd);
+        var instrs = analyze(cmd);
+        executeCmd(instrs);
+        showReport(cmd, isValidCmd);
     };
+    // analyze input instruction
+    //function analyze(cmd){
+    function analyze(cmd) {
+        var instrs = cmd.replace(" ", ",").split(",");
+        return instrs;
+    }
+
+    function executeCmd(instrs) {
+        if (instrs.indexOf('PLACE') >= 0) {
+            place(parseInt(instrs[1]), parseInt(instrs[2]), instrs[3]);
+            isValidCmd = true;
+        } else if (instrs.length == 1 && __WEBPACK_IMPORTED_MODULE_0__const_js__["d" /* INSTRUCTIONS */].indexOf(instrs[0]) >= 0) {
+            var fun = insideCarPark ? instrs[0].toLowerCase() + "()" : "";
+            isValidCmd = true;
+            eval(fun);
+        } else {
+            isValidCmd = false;
+        }
+    }
     // private function to show real-time data and report
-    function showReport(cmd) {
+    function showReport(cmd, isValidCmd) {
         __WEBPACK_IMPORTED_MODULE_1__ui_js__["a" /* output */].innerHTML = `Real-time data:<br>
-                            Current instruction:  ${cmd}<br>
-                            Current X position:  ${X}<br>
-                            Current Y position:  ${Y}<br>
+                            Current instruction:  ${cmd}  is ${isValidCmd ? "Valid" : "Ignored"}<br>
+                            Current X position:  ${X - 2}<br>
+                            Current Y position:  ${6 - Y}<br>
                             Current Direction:  ${direction}<br>
-                            Report:  ${cmd.indexOf('REPORT') >= 0 ? [X, Y, direction] : ""}
+                            Report:  ${cmd.indexOf('REPORT') >= 0 ? [X - 2, 6 - Y, direction] : ""}
                             `;
     }
     // execute PLACE cmd
     function place(x, y, d) {
-        X = parseInt(x);
-        Y = parseInt(y);
-        direction = d;
-        car.style.top = Y * cellLength + 'px';
-        car.style.left = X * cellLength + 'px';
-        if (X >= __WEBPACK_IMPORTED_MODULE_0__const_js__["e" /* WEST_BORDER */] && X <= __WEBPACK_IMPORTED_MODULE_0__const_js__["b" /* EAST_BORDER */] && Y >= __WEBPACK_IMPORTED_MODULE_0__const_js__["c" /* NORTH_BORDER */] && Y <= __WEBPACK_IMPORTED_MODULE_0__const_js__["d" /* SOUTH_BORDER */]) {
+        if (isInsideCarPark(x + 2, 6 - y)) {
+            X = x + 2;
+            Y = 6 - y;
+            angle = __WEBPACK_IMPORTED_MODULE_0__const_js__["a" /* ANGLE */][direction];
             insideCarPark = true;
+            setCarPosition(X, Y, d);
         }
     }
+    // set car position. called by reset and place 
+    function setCarPosition(x, y, d) {
+        direction = d;
+        car.style.top = y * cellLength + 'px';
+        car.style.left = x * cellLength + 'px';
+        car.style.transform = `rotate(${angle}deg)`;
+    }
+
+    function isInsideCarPark(x, y) {
+        return x >= __WEBPACK_IMPORTED_MODULE_0__const_js__["g" /* WEST_BORDER */] && x <= __WEBPACK_IMPORTED_MODULE_0__const_js__["c" /* EAST_BORDER */] && y >= __WEBPACK_IMPORTED_MODULE_0__const_js__["e" /* NORTH_BORDER */] && y <= __WEBPACK_IMPORTED_MODULE_0__const_js__["f" /* SOUTH_BORDER */];
+    }
+
     // execute LEFT cmd
     function left() {
         angle -= 90;
-        direction = __WEBPACK_IMPORTED_MODULE_0__const_js__["a" /* Dir */][(__WEBPACK_IMPORTED_MODULE_0__const_js__["a" /* Dir */].indexOf(direction) + 3) % 4];
+        direction = __WEBPACK_IMPORTED_MODULE_0__const_js__["b" /* Dir */][(__WEBPACK_IMPORTED_MODULE_0__const_js__["b" /* Dir */].indexOf(direction) + 3) % 4];
         car.style.transform = `rotate(${angle}deg)`;
     }
     // execute RIGHT cmd
     function right() {
         angle += 90;
-        direction = __WEBPACK_IMPORTED_MODULE_0__const_js__["a" /* Dir */][(__WEBPACK_IMPORTED_MODULE_0__const_js__["a" /* Dir */].indexOf(direction) + 1) % 4];
+        direction = __WEBPACK_IMPORTED_MODULE_0__const_js__["b" /* Dir */][(__WEBPACK_IMPORTED_MODULE_0__const_js__["b" /* Dir */].indexOf(direction) + 1) % 4];
         car.style.transform = `rotate(${angle}deg)`;
     }
     // execute MOVE cmd
     function move() {
-        var step = 1;
+        var p = { x: X, y: Y, ang: angle };
         switch (direction) {
             case 'NORTH':
-                if (Y - step >= __WEBPACK_IMPORTED_MODULE_0__const_js__["c" /* NORTH_BORDER */]) {
-                    Y -= step;car.style.top = Y * cellLength + 'px';
-                };break;
-            case 'EAST':
-                if (X + step <= __WEBPACK_IMPORTED_MODULE_0__const_js__["b" /* EAST_BORDER */]) {
-                    X += step;car.style.left = X * cellLength + 'px';
-                };break;
+                p.y--;p.ang = 0;break;
             case 'SOUTH':
-                if (Y + step <= __WEBPACK_IMPORTED_MODULE_0__const_js__["d" /* SOUTH_BORDER */]) {
-                    Y += step;car.style.top = Y * cellLength + 'px';
-                };break;
+                p.y++;p.ang = 180;break;
+            case 'EAST':
+                p.x++;p.ang = -90;break;
             case 'WEST':
-                if (X - step >= __WEBPACK_IMPORTED_MODULE_0__const_js__["e" /* WEST_BORDER */]) {
-                    X -= step;car.style.left = X * cellLength + 'px';
-                };break;
+                p.x--;p.ang = 90;break;
             default:
                 break;
+        }
+        if (isInsideCarPark(p.x, p.y)) {
+            X = p.x;
+            Y = p.y;
+            angle = p.ang;
+            setCarPosition(X, Y, direction);
         }
     }
     // execute REPORT cmd
     function report() {
-        var REPORT = [X, Y, direction];
-        console.log(REPORT);
+        console.log([X - 2, 6 - Y, direction]);
     }
-};
+}
 
 /* harmony default export */ __webpack_exports__["a"] = (Car);
 
