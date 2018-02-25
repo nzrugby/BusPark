@@ -4,13 +4,13 @@
 	left:500px;
 	background-color: transparent;
 	border: double;
-	width:425px;
+	width:421px;
 	height:550px;
 }
 .output{
 	position: absolute;
 	top:420px;
-	width:420px;
+	width:416px;
 	height:125px;
 	border:solid;
 	index:999;
