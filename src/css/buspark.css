@@ -39,11 +39,11 @@
 	left:500px;
 }
 .car{
-	background: url(../img/car.jpg) no-repeat center;
-	height:38px;
-	width:38px;
-	margin:1px 1px 1px 1px;
-	background-color: transparent;
 	position:absolute;
+	background: url(../img/car.jpg) no-repeat center;
+	width:38px;
+	height:38px;
+	margin:1px;
+	background-color: transparent;
 }
 
