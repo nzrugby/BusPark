@@ -82,13 +82,18 @@ var Car = function(){
     
     // execute MOVE cmd
     function move(){
-        var step = 1;
+        var p = {x:X,y:Y};
         switch(direction){
-            case 'NORTH': if((Y - step)>=NORTH_BORDER){Y -= step;car.style.top = Y*cellLength + 'px';};break;
-            case 'EAST' : if((X + step)<=EAST_BORDER){X += step;car.style.left = X*cellLength + 'px';};break;
-            case 'SOUTH': if((Y + step)<=SOUTH_BORDER){Y += step;car.style.top = Y*cellLength + 'px';};break;
-            case 'WEST' : if((X - step)>=WEST_BORDER){X -= step;car.style.left = X*cellLength + 'px';};break;
+            case 'NORTH': p.y--;break;
+            case 'SOUTH': p.y++;break;
+            case 'EAST' : p.x++;break;
+            case 'WEST' : p.x--;break;
             default: break;
+        }
+        if(insideCarPark(x,y)){
+            X = p.x;
+            Y = p.y;
+            setCarPosition(X,Y,direction)
         }
     }
     
