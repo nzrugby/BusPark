@@ -1,4 +1,5 @@
 import '../css/buspark.css'
+import instructions from './instructions.json'
 // construct bus area including valid park area and invalid park area
 var busArea= document.querySelector('.frame');
 var step = 42;
@@ -27,4 +28,12 @@ var car = document.createElement('div');
 car.className = 'car';
 busArea.appendChild(car);
 
-export {busArea,output}
+var testOptions = document.createElement('select');
+testOptions.className = 'testSelect';
+var optionsKeys = Object.keys(instructions);
+var optList = optionsKeys.map(function(op){return `<option value=${op}>TEST${op}</option>`});
+optList.unshift(`<option value=${optionsKeys[0]}>Select Test</option>`);
+testOptions.innerHTML = optList;
+document.getElementById('test').appendChild(testOptions);
+
+export {busArea,output,testOptions}
