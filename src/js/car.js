@@ -45,7 +45,7 @@ var Car = function(){
                             `;
     }
     
-    // execute PLACE cmd
+    // execute PLACE cmd. d represent direction like "WEST" .etc.
     function place(x,y,d){
         X = parseInt(x);
         Y = parseInt(y);
@@ -92,7 +92,7 @@ var Car = function(){
         }
     }
     
-     // execute REPORT cmd
+    // execute REPORT cmd
     function report(){
         console.log( [X,Y,direction] );
     }
