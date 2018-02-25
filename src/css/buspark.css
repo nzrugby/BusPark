@@ -19,6 +19,8 @@
 	position:absolute;
 	top:200px;
 	left:1000px;
+	width:100px;
+	height:30px;
 }
 .noParkArea{
 	position:absolute;
@@ -39,11 +41,17 @@
 	left:500px;
 }
 .car{
-	position:absolute;
 	background: url(../img/car.jpg) no-repeat center;
-	width:38px;
 	height:38px;
-	margin:1px;
+	width:38px;
+	margin:1px 1px 1px 1px;
 	background-color: transparent;
+	position:absolute;
 }
-
+.testSelect{
+	position: absolute;
+	top: 250px;
+	left:1000px;
+	width:100px;
+	height:30px;
+}
