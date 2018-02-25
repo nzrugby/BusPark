@@ -1,3 +1,4 @@
 # BusPark
 Bus in Carpark Simulator
-![buspark](https://user-images.githubusercontent.com/31294078/36637312-9ffa037a-1a3e-11e8-9bad-5c2baba94ff2.gif)
+
+![buspark](https://user-images.githubusercontent.com/31294078/36637468-343d0544-1a41-11e8-80b5-d75c9ea0bdf3.gif)
