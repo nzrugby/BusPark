@@ -3,7 +3,7 @@ import {output} from './ui.js'
 
 var Car = function(){
     //initial value
-    var X = 0,Y = 0, direction = "NORTH;
+    var X = 0,Y = 0, direction = "NORTH";
     //real distance for car to move in webpage
     var cellLength = 42;
     //for car rotation
