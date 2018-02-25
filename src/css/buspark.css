@@ -1,0 +1,49 @@
+.frame{
+	position: absolute;
+	top:100px;
+	left:500px;
+	background-color: transparent;
+	border: double;
+	width:425px;
+	height:550px;
+}
+.output{
+	position: absolute;
+	top:420px;
+	width:420px;
+	height:125px;
+	border:solid;
+	index:999;
+}
+#btnStart{
+	position:absolute;
+	top:200px;
+	left:1000px;
+}
+.noParkArea{
+	position:absolute;
+	width:42px;
+	height:42px;
+	background-color:lightgrey;
+	border:1px dashed;
+	top:100px;
+	left:500px;
+}
+.parkArea{
+	position:absolute;
+	width:42px;
+	height:42px;
+	background-color:burlywood;
+	border:1px dashed;
+	top:100px;
+	left:500px;
+}
+.car{
+	background: url(../img/car.jpg) no-repeat center;
+	height:38px;
+	width:38px;
+	margin:1px 1px 1px 1px;
+	background-color: transparent;
+	position:absolute;
+}
+
