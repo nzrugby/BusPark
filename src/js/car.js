@@ -1,7 +1,7 @@
 import {Dir,EAST_BORDER,NORTH_BORDER,SOUTH_BORDER,WEST_BORDER,ANGLE,INSTRUCTIONS} from './const.js'
 import {output} from './ui.js'
 
-var Car = function(){
+function Car(){
     var X = 0,Y = 0;
     var direction = "NORTH";
     // 
@@ -24,20 +24,30 @@ var Car = function(){
     // accept instruction from control system
     this.instruction = function(cmd){ 
         console.log(cmd);
+        var instrs = analyze(cmd);
+        executeCmd(instrs);
+        showReport(cmd,isValidCmd);
+    }
+    // analyze input instruction
+    //function analyze(cmd){
+    function analyze(cmd){    
         var instrs = cmd.replace(" ",",").split(",");
+        return instrs;
+    }
+
+    function executeCmd(instrs){
         if(instrs.indexOf('PLACE')>=0){
             place(parseInt(instrs[1]),parseInt(instrs[2]),instrs[3])
             isValidCmd = true;
         }
-        else if(INSTRUCTIONS.indexOf(cmd)>=0){
-            var fun = insideCarPark? cmd.toLowerCase()+"()":"";
+        else if(instrs.length==1 && INSTRUCTIONS.indexOf(instrs[0])>=0){
+            var fun = insideCarPark? instrs[0].toLowerCase()+"()":"";
             isValidCmd = true;
             eval(fun);
         }
         else{
             isValidCmd = false;
         }
-        showReport(cmd,isValidCmd);
     }
     // private function to show real-time data and report
     function showReport(cmd,isValidCmd){
@@ -107,3 +117,4 @@ var Car = function(){
 }
 
 export default Car;
+
