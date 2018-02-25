@@ -1,4 +1,4 @@
-import {Dir,EAST_BORDER,NORTH_BORDER,SOUTH_BORDER,WEST_BORDER,ANGLE} from './const.js'
+import {Dir,EAST_BORDER,NORTH_BORDER,SOUTH_BORDER,WEST_BORDER,ANGLE,INSTRUCTIONS} from './const.js'
 import {output} from './ui.js'
 
 var Car = function(){
@@ -10,6 +10,8 @@ var Car = function(){
     var angle = 0;
     // to judge if bus is inside carpark
     var insideCarPark = false;
+    var isValidCmd = false;
+
     var car = document.querySelector('.car');
 
     // every time when start button clicked the car will be reseted to original location and status
@@ -25,17 +27,22 @@ var Car = function(){
         var instrs = cmd.replace(" ",",").split(",");
         if(instrs.indexOf('PLACE')>=0){
             place(parseInt(instrs[1]),parseInt(instrs[2]),instrs[3])
+            isValidCmd = true;
         }
-        else if(Dir.indexOf(cmd)>=0){
+        else if(INSTRUCTIONS.indexOf(cmd)>=0){
             var fun = insideCarPark? cmd.toLowerCase()+"()":"";
+            isValidCmd = true;
             eval(fun);
         }
-        showReport(cmd);
+        else{
+            isValidCmd = false;
+        }
+        showReport(cmd,isValidCmd);
     }
     // private function to show real-time data and report
-    function showReport(cmd){
+    function showReport(cmd,isValidCmd){
         output.innerHTML = `Real-time data:<br>
-                            Current instruction:  ${cmd}<br>
+                            Current instruction:  ${cmd}  is ${isValidCmd?"Valid":"Ignored"}<br>
                             Current X position:  ${X-2}<br>
                             Current Y position:  ${6-Y}<br>
                             Current Direction:  ${direction}<br>
