@@ -1,5 +1,3 @@
-// instruction sequence
-const instructions = ["PLACE 5,8,NORTH","MOVE","LEFT","PLACE 3,6,NORTH","MOVE","LEFT","MOVE","MOVE","RIGHT","PLACE 5,4,NORTH","MOVE","MOVE","LEFT","MOVE","MOVE","RIGHT","MOVE","LEFT","MOVE","REPORT"];
 //Dir: direction
 const Dir = ['NORTH','EAST','SOUTH','WEST'];
 //X direction
